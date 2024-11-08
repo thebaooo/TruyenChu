@@ -1,0 +1,68 @@
+﻿@model TruyenChu.Data.Story
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Tạo Truyện Mới</h1>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="StoryTitle"></label>
+        <input asp-for="StoryTitle" class="form-control" />
+        <span asp-validation-for="StoryTitle" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AuthorId"></label>
+        <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.Authors"></select>
+        <span asp-validation-for="AuthorId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImagePath">Hình ảnh</label>
+        <input type="file" name="imageFile" asp-for="ImagePath" class="form-control" />
+        <span asp-validation-for="ImagePath" class="text-danger"></span>
+    </div>
+
+
+    <h5>Thể loại:</h5>
+    @foreach (var category in ViewBag.Categories)
+    {
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="selectedCategories" value="@category.Value" />
+            <label class="form-check-label">@category.Text</label>
+        </div>
+    }
+    <h5>Trạng thái:</h5>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="IsHot" value="true" />
+        <label class="form-check-label">Hot</label>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="IsNew" value="true" />
+        <label class="form-check-label">New</label>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="IsFull" value="true" />
+        <label class="form-check-label">Full</label>
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Tạo" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

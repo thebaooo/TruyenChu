@@ -1,0 +1,26 @@
+﻿@model TruyenChu.Data.Chapter
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Xóa Chương: @Model.Title</h1>
+
+<div>
+    <h4>Bạn có chắc chắn muốn xóa chương này không?</h4>
+    <div>
+        <strong>Tên Chương: </strong> @Model.Title
+    </div>
+    <div>
+        <strong>Ngày Tạo: </strong> @Model.CreateDate.ToString("dd/MM/yyyy")
+    </div>
+</div>
+
+<form asp-action="Delete" asp-controller="Chapters" method="post">
+    <input type="hidden" asp-for="ChapterId" />
+    <input type="hidden" asp-for="StoryId" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" asp-controller="Chapters" asp-route-storyId="@Model.StoryId" class="btn btn-secondary">Hủy</a>
+</form>
+
+

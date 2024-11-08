@@ -1,0 +1,26 @@
+﻿@model TruyenChu.Data.User
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Xóa user</h1>
+
+<h3>Bạn có chắc chắn muốn xóa truyện này: @Model.UserName?</h3>
+
+<div>
+    <h4>Id: @Model.UserName</h4>
+    <p><strong>UserName:</strong> @Model.UserName</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Quyền:</strong> @Model.Role.RoleName</p>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="UserId" />
+    <div class="form-group">
+        <input type="submit" value="Xóa" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </div>
+</form>
+
+

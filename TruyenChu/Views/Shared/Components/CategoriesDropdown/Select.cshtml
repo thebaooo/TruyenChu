@@ -1,0 +1,21 @@
+﻿@model IEnumerable<TruyenChu.Data.Category>
+<div class="col-4 col-md-3 col-lg-2">
+    <select class="form-select select-stories-hot" aria-label="Truyện hot" onchange="redirectToCategory(this)">
+        <option selected value="">Tất cả</option>
+        @foreach (var item in Model)
+        {
+            <option value="@Url.Action("Index", "Category", new { id = item.CategoryId })">
+                @item.CategoryName
+            </option>
+        }
+    </select>
+</div>
+
+<script>
+    function redirectToCategory(select) {
+        var url = select.value;
+        if (url) {
+            window.location.href = url;
+        }
+    }
+</script>

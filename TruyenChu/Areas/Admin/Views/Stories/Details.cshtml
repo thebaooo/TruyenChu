@@ -1,0 +1,56 @@
+﻿@model TruyenChu.Data.Story
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>@Model.StoryTitle</h1>
+
+<div>
+    <h4>Tác giả: @Model.Author.Name</h4>
+    <p><strong>Mô tả:</strong> @Model.Description</p>
+    <p><strong>Ngày tạo:</strong> @Model.CreateDate.ToString("dd/MM/yyyy")</p>
+    <p><strong>Số lượt xem:</strong> @Model.ViewCount</p>
+    <p><strong>Trạng thái</strong>
+        <div class="list-badge" style="display: flex; gap: 10px; margin-top: 10px;">
+            @if (Model.IsFull)
+            {
+                <span class="story-item__badge badge" style="font-size: 14px; padding: 5px 10px; border-radius: 15px; font-weight: bold; text-transform: uppercase; background-color: #28a745; color: white;">
+                    Full
+                </span>
+            }
+            @if (Model.IsHot)
+            {
+                <span class="story-item__badge badge" style="font-size: 14px; padding: 5px 10px; border-radius: 15px; font-weight: bold; text-transform: uppercase; background-color: #dc3545; color: white;">
+                    Hot
+                </span>
+            }
+            @if (Model.IsNew)
+            {
+                <span class="story-item__badge badge" style="font-size: 14px; padding: 5px 10px; border-radius: 15px; font-weight: bold; text-transform: uppercase; background-color: #17a2b8; color: white;">
+                    New
+                </span>
+            }
+        </div>
+    </p>
+
+    <h5>Thể loại:</h5>
+    <ul>
+        @if (Model.StoryCategories != null && Model.StoryCategories.Any())
+        {
+            foreach (var storyCategory in Model.StoryCategories)
+            {
+                <li>@storyCategory.Category.CategoryName</li>
+            }
+        }
+        else
+        {
+            <li>Chưa có thể loại</li>
+        }
+    </ul>
+</div>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.StoryId">Chỉnh sửa</a> |
+    <a asp-action="Index">Quay lại danh sách</a>
+</p>

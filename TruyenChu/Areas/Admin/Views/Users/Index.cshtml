@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TruyenChu.Data.User>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Danh sách người dùng</h1>
+
+<div>
+    <a class="btn btn-primary" asp-area="Admin" asp-controller="Users" asp-action="Create"><i class="mdi mdi-plus"></i>Create New</a>
+</div>
+<hr />
+<table class="table table-bordered">
+    <thead>
+        <tr class="table-warning">
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Quyền</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-success">
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
+                <td>@item.Role?.RoleName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId">Chỉnh sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.UserId">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.UserId">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

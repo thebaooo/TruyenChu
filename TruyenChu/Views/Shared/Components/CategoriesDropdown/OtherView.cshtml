@@ -1,0 +1,7 @@
+﻿@model IEnumerable<TruyenChu.Data.Category>
+@foreach(var item in Model)
+{
+    <li class="">
+        <a asp-controller="Category" asp-action="Index" asp-route-id="@item.CategoryId" class="text-decoration-none text-dark hover-title">@item.CategoryName</a>
+    </li>
+}

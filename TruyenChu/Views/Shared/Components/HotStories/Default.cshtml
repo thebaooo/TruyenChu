@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TruyenChu.Data.Story>
+@foreach (var item in Model)
+{
+    <div class="story-item">
+        <a asp-controller="Story" asp-action="Index" asp-route-id="@item.StoryId" class="d-block text-decoration-none">
+            <div class="story-item__image">
+                <img src="@item.ImagePath" alt="@item.StoryTitle" class="img-fluid" width="150"
+                     height="230" loading="lazy">
+            </div>
+            <h3 class="story-item__name text-one-row story-name">@item.StoryTitle</h3>
+
+            <div class="list-badge">
+                @if (item.IsFull)
+                {
+                    <span class="story-item__badge badge text-bg-success">Full</span>
+                }
+                @if (item.IsHot)
+                {
+                    <span class="story-item__badge badge text-bg-danger">Hot</span>
+                }
+                @if (item.IsNew)
+                {
+                    <span class="story-item__badge badge text-bg-info text-light">New</span>
+                }
+            </div>
+        </a>
+    </div>
+}

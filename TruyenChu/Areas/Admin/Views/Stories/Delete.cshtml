@@ -1,0 +1,26 @@
+﻿@model TruyenChu.Data.Story
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Xóa Truyện</h1>
+
+<h3>Bạn có chắc chắn muốn xóa truyện này: @Model.StoryTitle?</h3>
+
+<div>
+    <h4>Tác giả: @Model.Author.Name</h4>
+    <p><strong>Mô tả:</strong> @Model.Description</p>
+    <p><strong>Ngày tạo:</strong> @Model.CreateDate.ToString("dd/MM/yyyy")</p>
+    <p><strong>Số lượt xem:</strong> @Model.ViewCount</p>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="StoryId" />
+    <div class="form-group">
+        <input type="submit" value="Xóa" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </div>
+</form>
+
+

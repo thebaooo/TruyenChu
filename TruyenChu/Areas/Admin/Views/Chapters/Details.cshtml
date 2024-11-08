@@ -1,0 +1,20 @@
+﻿@model TruyenChu.Data.Chapter
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Chi tiết Chương: @Model.Title</h1>
+
+<p><strong>Số Chương:</strong> @Model.ChapterNumber</p>
+<p><strong>Ngày Tạo:</strong> @Model.CreateDate.ToString("dd/MM/yyyy")</p>
+<p><strong>Nội Dung:</strong></p>
+<div>
+    @Html.Raw(Model.Content) <!-- Hiển thị nội dung chương -->
+</div>
+<hr/>
+<p>
+    <a asp-action="Index" asp-controller="Chapters" asp-route-storyId="@Model.StoryId">Quay lại</a>
+</p>
+
+

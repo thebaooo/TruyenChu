@@ -1,0 +1,17 @@
+﻿@model IEnumerable<TruyenChu.Data.Story>
+@foreach (var item in Model)
+{
+    <div class="story-item-full text-center">
+        <a asp-controller="Story" asp-action="Index" asp-route-id="@item.StoryId" class="d-block story-item-full__image">
+            <img src="@item.ImagePath" alt="@item.StoryTitle" class="img-fluid w-100"
+            width="150" height="230" loading="lazy">
+        </a>
+        <h3 class="fs-6 story-item-full__name fw-bold text-center mb-0">
+            <a asp-controller="Story" asp-action="Index" asp-route-id="@item.StoryId"
+            class="text-decoration-none text-one-row story-name">
+                @item.StoryTitle
+            </a>
+        </h3>
+        <span class="story-item-full__badge badge text-bg-success">Full - @item.Chapters.Count() chương</span>
+    </div>
+}

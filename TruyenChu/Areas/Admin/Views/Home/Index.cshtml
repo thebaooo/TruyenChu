@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Profile</h1>
+<div class="container">
+    <h2>Welcome @Context.User.Identity.Name</h2>
+    <a asp-controller="Account" asp-action="Logout">Đăng xuất</a>
+</div>

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<TruyenChu.Data.Category>
+@foreach (var item in Model)
+{
+    <li>
+        <a class="dropdown-item" asp-controller="Category" asp-action="Index" asp-route-id="@item.CategoryId">
+            @item.CategoryName
+        </a>
+    </li>
+}
+
+

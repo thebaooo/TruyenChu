@@ -1,0 +1,136 @@
+﻿@model IEnumerable<TruyenChu.Data.Story>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+<main>
+    <div class="section-stories-hot mb-3">
+        <div class="container">
+            <div class="row">
+                <div class="head-title-global d-flex justify-content-between mb-2">
+                    <div class="col-6 col-md-4 col-lg-4 head-title-global__left d-flex align-items-center">
+                        <h2 class="me-2 mb-0 border-bottom border-secondary pb-1">
+                            <a href="#" class="d-block text-decoration-none text-dark fs-4 story-name"
+                               title="Truyện Hot">Truyện Hot</a>
+                        </h2>
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                    </div>
+
+                    @await Component.InvokeAsync("CategoriesDropdown", new { viewName = "Select" })
+
+                    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-stories-hot__list">
+                        @await Component.InvokeAsync("HotStories")
+                    </div>
+
+
+                    <div class="section-stories-hot__list wrapper-skeleton d-none">
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                        <div class="skeleton" style="max-width: 150px; width: 100%; height: 230px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-12 col-md-8 col-lg-9">
+                <div class="section-stories-new mb-3">
+                    <div class="row">
+                        <div class="head-title-global d-flex justify-content-between mb-2">
+                            <div class="col-6 col-md-4 col-lg-4 head-title-global__left d-flex align-items-center">
+                                <h2 class="me-2 mb-0 border-bottom border-secondary pb-1">
+                                    <a href="https://suustore.com/#"
+                                       class="d-block text-decoration-none text-dark fs-4 story-name"
+                                       title="Truyện Mới">Truyện Mới</a>
+                                </h2>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-stories-new__list">
+                                @await Component.InvokeAsync("NewStories")
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4 col-lg-3 sticky-md-top">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="section-list-category bg-light p-2 rounded card-custom">
+                            <div class="head-title-global mb-2">
+                                <div class="col-12 col-md-12 head-title-global__left">
+                                    <h2 class="mb-0 border-bottom border-secondary pb-1">
+                                        <span href="#" class="d-block text-decoration-none text-dark fs-4"
+                                              title="Truyện đang đọc">Thể loại truyện</span>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Horizontal under breakpoint -->
+                                <ul class="list-category">
+                                    @await Component.InvokeAsync("CategoriesDropdown", new { viewName = "OtherView" })
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-stories-full mb-3 mt-3">
+        <div class="container">
+            <div class="row">
+                <div class="head-title-global d-flex justify-content-between mb-2">
+                    <div class="col-12 col-md-4 head-title-global__left d-flex">
+                        <h2 class="me-2 mb-0 border-bottom border-secondary pb-1">
+                            <span class="d-block text-decoration-none text-dark fs-4 title-head-name"
+                                  title="Truyện đã hoàn thành">Truyện đã hoàn thành</span>
+                        </h2>
+                        <!-- <i class="fa-solid fa-fire-flame-curved"></i> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-stories-full__list">
+                        @await Component.InvokeAsync("FullStories")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+

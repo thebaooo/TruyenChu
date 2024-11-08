@@ -1,0 +1,86 @@
+﻿@model IEnumerable<TruyenChu.Data.Story>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Danh sách Truyện</h1>
+
+<div>
+    <a class="btn btn-primary" asp-area="Admin" asp-controller="Stories" asp-action="Create"><i class="mdi mdi-plus"></i>Create New</a>
+</div>
+<hr />
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-warning">
+                <th>Hình ảnh</th>
+                <th>Tiêu đề</th>
+                <th>Tác giả</th>
+                <th>Thể loại</th>
+                <th>Ngày tạo</th>
+                <th>Lượt xem</th>
+                <th>Số Chương</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-success">
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ImagePath))
+                        {
+                            <img src="@item.ImagePath" alt="@item.StoryTitle" style="width:100px; height:auto;" />
+                        }
+                        else
+                        {
+                            <span>Không có hình ảnh</span>
+                        }
+                    </td>
+                    <td>@item.StoryTitle</td>
+                    <td>@item.Author.Name</td>
+                    <td>
+                        @foreach (var storyCategory in item.StoryCategories)
+                        {
+                            <div>@storyCategory.Category.CategoryName</div>
+                        }
+                    </td>
+                    <td>@item.CreateDate.ToString("dd/MM/yyyy")</td>
+                    <td>@item.ViewCount</td>
+                    <td>@item.Chapters.Count()</td>
+                    <td>
+                        <div class="list-badge" style="display: flex; gap: 10px; margin-top: 10px;">
+                            @if (item.IsFull)
+                            {
+                                <span class="story-item__badge badge" style="font-size: 14px; padding: 5px 10px; border-radius: 15px; font-weight: bold; text-transform: uppercase; background-color: #28a745; color: white;">
+                                    Full
+                                </span>
+                            }
+                            @if (item.IsHot)
+                            {
+                                <span class="story-item__badge badge" style="font-size: 14px; padding: 5px 10px; border-radius: 15px; font-weight: bold; text-transform: uppercase; background-color: #dc3545; color: white;">
+                                    Hot
+                                </span>
+                            }
+                            @if (item.IsNew)
+                            {
+                                <span class="story-item__badge badge" style="font-size: 14px; padding: 5px 10px; border-radius: 15px; font-weight: bold; text-transform: uppercase; background-color: #17a2b8; color: white;">
+                                    New
+                                </span>
+                            }
+                        </div>
+                    </td>
+                    <td class="text-wrap">
+                        <a asp-action="Index" asp-controller="Chapters" asp-route-storyId="@item.StoryId">Quản lý chương</a> |
+                        <a asp-action="Edit" asp-route-id="@item.StoryId">Chỉnh sửa</a> |
+                        <a asp-action="Details" asp-route-id="@item.StoryId">Chi tiết</a> |
+                        <a asp-action="Delete" asp-route-id="@item.StoryId">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

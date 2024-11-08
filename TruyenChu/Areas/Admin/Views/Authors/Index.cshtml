@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TruyenChu.Data.Author>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+<div>
+    <a class="btn btn-primary" asp-area="Admin" asp-controller="Authors" asp-action="Create"><i class="mdi mdi-plus"></i>Create New</a>
+</div>
+<hr />
+<table class="table table-bordered">
+    <thead>
+        <tr class="table-warning">
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="text-wrap">
+                    @Html.DisplayFor(modelItem => item.Bio)
+                </td>
+                <td>
+                    <a asp-area="Admin" asp-controller="Authors" asp-action="Edit" asp-route-id="@item.AuthorId">Edit</a> |
+                    <a asp-area="Admin" asp-controller="Authors" asp-action="Details" asp-route-id="@item.AuthorId">Details</a> |
+                    <a asp-area="Admin" asp-controller="Authors" asp-action="Delete" asp-route-id="@item.AuthorId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

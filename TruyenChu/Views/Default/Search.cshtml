@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TruyenChu.Data.Story>
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<main>
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-12 col-md-8 col-lg-9 mb-3">
+                <div class="head-title-global d-flex justify-content-between mb-2">
+                    <div class="col-12 col-md-12 col-lg-12 head-title-global__left d-flex">
+                        <h2 class="me-2 mb-0 border-bottom border-secondary pb-1">
+                            <span href="#" class="d-block text-decoration-none text-dark fs-4 category-name">Kết quả tìm kiếm của "@ViewBag.KeyWord" :</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="list-story-in-category section-stories-hot__list">
+                    @foreach (var item in Model)
+                    {
+                        <div class="story-item">
+                            <a asp-controller="Story" asp-action="Index" asp-route-id="@item.StoryId" class="d-block text-decoration-none">
+                                <div class="story-item__image">
+                                    <img src="@item.ImagePath" alt="@item.StoryTitle" class="img-fluid" width="150" height="230" loading="lazy">
+                                </div>
+                                <h3 class="story-item__name text-one-row story-name">@item.StoryTitle</h3>
+
+                                <div class="list-badge">
+                                    @if (item.IsFull)
+                                    {
+                                        <span class="story-item__badge badge text-bg-success">Full</span>
+                                    }
+                                    @if (item.IsHot)
+                                    {
+                                        <span class="story-item__badge badge text-bg-danger">Hot</span>
+                                    }
+                                    @if (item.IsNew)
+                                    {
+                                        <span class="story-item__badge badge text-bg-info text-light">New</span>
+                                    }
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
